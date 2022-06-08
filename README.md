@@ -46,4 +46,4 @@ The solution involves three main components:
 
 <img src="https://raw.githubusercontent.com/slintab/klaviyo-twilio-international-sms/main/example_klaviyo_webhook_config.jpg" width="200" height="400">
 
-4. That's it! When your flow runs, it should sent an SMS via Twilio to the users assigned to it!
+4. That's it! When your flow runs, it should send an SMS via Twilio to the users assigned to it!
