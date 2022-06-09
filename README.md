@@ -18,9 +18,9 @@ The solution involves three main components:
 
 ## Setup
 
-1. Configuring the Messaging Service for sending SMS
+1. Configuring the Messaging Service for sending SMS:
    1. (Optional) [Buy some numbers](https://support.twilio.com/hc/en-us/articles/223135247-How-to-Search-for-and-Buy-a-Twilio-Phone-Number-from-Console) for sending SMS. If you are sending SMS to multiple different countries, it is best to purchase a number from each of those countries. If you already have phone numbers, you can skip this step.
-   2. Create a Messaging Service. This can be done via the [Console](https://www.twilio.com/console/sms/services) as well as the [API](https://www.twilio.com/docs/messaging/services/api). Take note of the service's unique identifier (`SID`). You will need it when setting up the SMS function. If sending SMS to multiple geographical desitnations, turn on [Country code geomatching](https://www.twilio.com/docs/messaging/services#country-code-geomatch) on the messaging service. This will ensure that when sending the SMS messages, the Service automatically picks a local number from the sender pool (e.g. SMS to France will be sent from your French number). 
+   2. Create a Messaging Service. This can be done via the [Console](https://www.twilio.com/console/sms/services) as well as the [API](https://www.twilio.com/docs/messaging/services/api). Take note of the service's unique identifier (`SID`). You will need it when setting up the SMS function. If sending SMS to multiple geographical destinations, turn on [Country code geomatching](https://www.twilio.com/docs/messaging/services#country-code-geomatch) on the messaging service. This will ensure that when sending the SMS messages, the Service automatically picks a local number from the sender pool (e.g. SMS to France will be sent from your French number). 
    3. Add your numbers to the Messaging Service's [sender pool](https://support.twilio.com/hc/en-us/articles/223181308-Getting-started-with-Messaging-Services). The Messaging Service will use the numbers in its pool to send out messages.
 
 2. Deploying the SMS function: 
@@ -31,7 +31,7 @@ The solution involves three main components:
       - `MESSAGING_SERVICE_SID`={MESSAGING SERVICE SID FROM THE PREVIOUS STEP}
       - `AUTH_USERNAME`={USERNAME TO SECURE YOUR FUNCTION} - can be any string
       - `AUTH_PASSWORD`={PASSWORD TO SECURE YOUR FUNCTION} - can be any string
-   3. Deploy the SMS function via the [Serverless Toolking](https://www.twilio.com/docs/labs/serverless-toolkit) by running the `twilio serverless:deploy` CLI command. After the deployment completes take note of your newly deployed function's URL. You will need it when setting up the Klaviyo webhook.
+   3. Deploy the SMS function via the [Serverless Toolkit](https://www.twilio.com/docs/labs/serverless-toolkit) by running the `twilio serverless:deploy` CLI command. After the deployment completes take note of your newly deployed function's URL. You will need it when setting up the Klaviyo webhook.
 
 3. Setting up the Klaviyo flow to call the SMS function:
    1. [Create a Klaviyo flow](https://help.klaviyo.com/hc/en-us/articles/115002774932-Getting-started-with-flows) with the desired trigger.
