@@ -44,6 +44,6 @@ The solution involves three main components:
          - `recipient_phone_number`: storing the recipients phone number
          - `message`: storing the message body 
 
-<img src="https://raw.githubusercontent.com/slintab/klaviyo-twilio-international-sms/main/example_klaviyo_webhook_config.jpg" width="200" height="400">
+<img src="https://raw.githubusercontent.com/slintab/klaviyo-twilio-international-sms/main/example_klaviyo_webhook_config.jpg" width="200" height="400" align="center">
 
 4. That's it! When your flow runs, it should send an SMS via Twilio to the users assigned to it!
