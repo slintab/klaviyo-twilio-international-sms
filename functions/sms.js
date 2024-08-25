@@ -1,34 +1,27 @@
 exports.handler = async (context, event, callback) => {
-  console.log(`Received: ${event}`);
-
   // Prepare a new Twilio response for the incoming request
   const response = new Twilio.Response();
 
-  // Check if authentication provided is correct
-  if (!isAuthorized(event.request, context)) {
-    return callback(null, setUnauthorized(response));
-  }
-
   // Extract payload
-  const recipient = event.recipient_phone_number;
-  const message = event.message;
+  const { request, recipient_phone_number, message } = event;
 
   // Check if payload has all data
-  if (!recipient || !message) {
+  if (!(recipient_phone_number && message && request)) {
     return callback(null, setBadRequest(response));
   }
 
-  let result;
-
-  try {
-    result = await sendMessage(recipient, message, context);
-  } catch (e) {
-    console.log(`There has been an error: ${e}`);
-
-    callback(e, null);
+  // Check if authentication provided is correct
+  if (!isAuthorized(request, context)) {
+    return callback(null, setUnauthorized(response));
   }
 
-  callback(null, `Message sent successfully with SID:${result.sid}`);
+  try {
+    const result = await sendMessage(recipient, message, context);
+    callback(null, `Message sent successfully with SID:${result.sid}`);
+  } catch (e) {
+    console.log(`There has been an error: ${e}`);
+    callback(e);
+  }
 };
 
 // Helper function to format the response as a 401 Unauthorized response
@@ -48,7 +41,7 @@ function setBadRequest(response) {
 
 // Function for checking authentication headers
 function isAuthorized(request, context) {
-  const authHeader = request.headers.authorization;
+  const authHeader = request.headers?.authorization;
 
   if (!authHeader) return false;
 
